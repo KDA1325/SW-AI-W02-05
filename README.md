@@ -28,7 +28,7 @@ SW_AI-W02-05-TEMPLATE/
 └── README.md               # 본 문서
 ```
 
-## 저장소 설정하기
+## ⚙️ 저장소 설정하기
 
 이 템플릿을 본인의 GitHub 저장소로 복사합니다:
 
@@ -54,6 +54,34 @@ cd /{드라이브}/{폴더}
 # 반드시 현재 위치(폴더)가 비어있어야 클론 가능
 git clone {템플릿-저장소-URL} .
  
+```
+
+## ✏️ 작업 내역 반영하기 
+```bash
+# file 들의 tracking 상태 보기
+git status
+
+# 저장소 최신 작업 내역 가지고 오기
+# pull을 먼저 진행하지 않으면 나의 로컬 작업 내역을 push 할 수 없음 
+git pull
+
+# 작업 내역 커밋하기
+git commit -m "코멘트"
+
+# 저장소에 작업 내역 반영하기
+git push
+```
+
+## 그 외 유용한 명령어
+```bash
+# 한 줄로 그래프 형태로 commit 히스토리 보기
+git log --oneline --graph
+
+# remote origin의 development branch merge
+git merge origin/development
+
+# remote에서 삭제된 brach를 local 에서도 깔끔하게 삭제
+git fetch origin --prune
 ```
 
 ## 📝 문제 풀이 방법
