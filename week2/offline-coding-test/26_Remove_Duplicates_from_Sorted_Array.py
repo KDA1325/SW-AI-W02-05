@@ -21,7 +21,7 @@ class Solution:
         idxs = []        
 
         # nums 처음부터 끝까지 for문으로 돌기
-        for i in range(len(nums)):
+        for i in range(len(nums) - 1):
 
             # 오름차순 정렬이기 때문에 인덱스 i의 요소가 인덱스 i + 1 요소(다음 요소)와 값이 같은지 비교 
             tmp = nums[i]
