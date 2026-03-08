@@ -47,10 +47,8 @@ def is_palindrome(s):
     for i in range(len(string)):
         if string[i] != reversed[i]:
             return False
-        # if string[i] != string[::-1] :
-
-    return True        
-    #return False
+        
+    return True    
 
 # 테스트 케이스
 if __name__ == "__main__":
