@@ -67,7 +67,8 @@ def rotate_matrix_90(matrix):
     # 힌트: (i, j) 위치의 요소는 회전 후 (j, n-1-i) 위치로 이동 
     for i in range(n):
         for j in range(n):
-            rotated[j][i] = matrix[n-1-i][j]
+            # rotated[j][i] = matrix[n-1-i][j]
+            rotated[j][n-1-i] = matrix[i][j]
     
     return rotated
 
