@@ -44,34 +44,51 @@ def find_above_average_students(students):
 
     # 평균 점수 이상인 학생 이름을 저장할 리스트 
     above_average_students = []
+
     # 모든 학생들의 점수를 저장할 리스트
     scores = []
-    # 반환값
-    tuple1 = ()
-    tuple2 = ()
 
     # TODO: 모든 학생의 점수를 리스트로 추출하세요    
 
     # 리스트 [딕셔너리]
     # students 리스트를 처음부터 끝까지 돌면서 key 값이 score인 value를 get
     # value 값을 scores 리스트에 요소로 저장 
-    for i in range(len(students)):
-        scores.append(students[i].get('score'))
+
+    # 딕셔너리 get() 함수 사용
+    # for i in range(len(students)):
+    #     scores.append(students[i].get('score'))
+        
+    # 딕셔너리 직접 접근
+    # for i in range(len(students)):
+    #     scores.append(students[i]['score'])
+
+    # 리스트 컴프리헨션 사용 
+    # 컴프리헨션 구문에선 get() 함수 사용 불가
+    scores = [students[i]['score'] for i in range(len(students))]
 
     # TODO: 평균 점수를 계산하세요
     average = sum(scores)/len(students)
-    tuple1 = (average, )
 
     # TODO: 평균 이상인 학생들의 이름을 리스트로 추출하세요
-    for i in range(len(scores)):
-        if scores[i] >= average:
-            above_average_students.append(students[i].get('name'))
 
-    tuple2 = (above_average_students, )
+    # 딕셔너리 get() 함수 사용
+    # for i in range(len(scores)):
+    #     if scores[i] >= average:
+    #         above_average_students.append(students[i].get('name'))
 
-    tuple1 + tuple2
-    # 반환값
-    return tuple1 + tuple2
+    # 딕셔너리 직접 접근
+    # for i in range(len(scores)):
+    #     if scores[i] >= average:
+    #         above_average_students.append(students[i]['name'])
+
+    # 리스트 컴프리헨션 사용 
+    # 컴프리헨션 구문에선 get() 함수 사용 불가
+    above_average_students = [students[i]['name'] for i in range(len(scores)) if scores[i] >= average]
+
+    # 반환값 두 개를 tuple로 묶어주기
+    tuple = (average, above_average_students)
+
+    return tuple
 
 # 테스트 케이스
 if __name__ == "__main__":
