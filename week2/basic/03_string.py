@@ -36,13 +36,20 @@ def is_palindrome(s):
     """
     # TODO: 알파벳과 숫자만 남기고 소문자로 변환하세요
     # 힌트: isalnum() 메서드와 lower() 메서드 사용
-    pass
-    
+    # s.isalnum(): 문자열이 영어, 한글 혹은 숫자로 되어있으면 True 리턴, 아니면 False 리턴 
+    string = [s[i].lower() for i in range(len(s)) if s[i].isalnum() == True]
+
     # TODO: 정제된 문자열이 회문인지 확인하세요
     # 방법1: 문자열을 뒤집어서 비교 ([::-1] 사용)
     # 방법2: 양 끝 인덱스를 이용한 투 포인터 방식
-    pass
-    
+    # [::-1]: 문자열을 [::-1] 인덱스로 호출하면 해당 문자열을 뒤집은 결과를 반환한다
+    reversed = string[::-1]
+    for i in range(len(string)):
+        if string[i] != reversed[i]:
+            return False
+        # if string[i] != string[::-1] :
+
+    return True        
     #return False
 
 # 테스트 케이스
@@ -73,5 +80,3 @@ if __name__ == "__main__":
     result4 = is_palindrome(test4)
     print(f"입력: \"{test4}\"")
     print(f"회문 여부: {result4}")
-
-
