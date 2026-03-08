@@ -65,6 +65,9 @@ git status
 # pull을 먼저 진행하지 않으면 나의 로컬 작업 내역을 push 할 수 없음 
 git pull
 
+# 커밋할 파일 추가하기
+git add <filenName>
+
 # 작업 내역 커밋하기
 git commit -m "코멘트"
 
