@@ -34,6 +34,8 @@ def insertion_sort(arr):
     """
     n = len(arr)
     
+    key = 0
+
     # TODO: 두 번째 원소(인덱스 1)부터 시작
     ## 각 원소를 정렬된 부분에 삽입
     ## 현재 원소를 key에 저장    
@@ -41,8 +43,32 @@ def insertion_sort(arr):
     ## j는 key 바로 앞 인덱스부터 시작
     ## arr[j] > key인 동안 원소를 오른쪽으로 이동
     ## 찾은 위치에 key 삽입
-    pass
-    
+    for i in range(1, n):
+        key = arr[i]
+        
+        j = i - 1
+
+        while j >= 0 and arr[j] > key:
+            arr[j + 1] = arr[j]
+            j -= 1
+        
+        # for문을 사용하면 맨 첫번째 요소가 정렬되지 않는 문제가 생김
+        # for j in range(j, -1, -1):
+        #     if arr[j] > key:
+        #         # shift, 오른쪽으로 밀기
+        #         # 반복문 안에서 비교가 끝난 후, 마지막으로 멈춘 위치[j + 1]에 key를 저장한다
+        #         arr[j + 1] = arr[j]
+                
+        #         # swap, 교환
+        #         # 서로 떨어져 있는 원소를 교환하면 불안정해짐 
+        #         # tmp = arr[j]
+        #         # arr[j] = key
+        #         # arr[j+1] = tmp
+        #     else: 
+        #         break
+
+        arr[j + 1] = key
+
     return arr
 
 def insertion_sort_with_steps(arr):
@@ -60,9 +86,12 @@ def insertion_sort_with_steps(arr):
         print(f"정렬된 부분: {arr[:i]}")
         
         # TODO: 삽입 위치 찾기 및 이동
-        pass
-        
+        while j >= 0 and arr[j] > key:
+            arr[j + 1] = arr[j]
+            j -= 1
+
         arr[j + 1] = key
+
         print(f"삽입 후: {arr}")
     
     return arr
@@ -90,5 +119,3 @@ if __name__ == "__main__":
     result3 = insertion_sort(arr3.copy())
     print(f"정렬 후: {result3}")
     print("이미 정렬된 경우 O(n) 시간 소요")
-
-
