@@ -41,28 +41,43 @@ def combinations(n, k):
         
         Args:
             start: 탐색을 시작할 숫자
+            ex) [1, 3]이라면, 중복되지 않게 4부터 시작해야 함
+            -> backtrack(i + 1, current_combination)
+
             current_combination: 현재까지 선택한 숫자들
+            ex) [1, 3] -> 지금까지 1과 3을 뽑아둔 상태 
         """
         # TODO: base case - k개를 모두 선택했으면 결과에 추가
         if len(current_combination) == k:
             # 취소 단계 pop()의 영향을 받지 않게 별도의 list로 append 처리  
-            return result.append(list(current_combination))
-        
+            result.append(list(current_combination))
+            return 
         # TODO: start부터 n까지 숫자를 하나씩 시도
         ## TODO: 백트랙킹 3단계 구현
-        for i in range(start, n + 1):  
+
+        # 현재 단계에서 선택 가능한 숫자들을 하나씩 시도해 보는 부분
+        # ex) start=2, n=4 -> i = 2, 3, 4를 차례로 선택하겠다
+        for i in range(start, n + 1):
             ## 1. 선택(Choose)
-            # 현재 위치의 숫자 추가
+            # 현재 숫자 i를 조합에 넣음 -> [i]
             current_combination.append(i)
 
             ## 2. 탐색(Explore), 재귀
-            # 중복되지 않게 i + 1로 다음 단계 이동
+            # 방금 위에서 i를 조합에 넣었으니, 중복되지 않게 i + 1부터 다시 선택 시작
             # 만약 현재 i가 2라면, 다음 재귀에선 i가 3이 되면서 겹치지 않는 아예 다른 조합을 탐색할 수 있음
+            # 이렇게 해야 [1, 2]는 만들고 [2, 1]은 만들지 않는다
+            # ex) backtrack(2, [1]) -> [1] 다음에 올 숫자를 2부터 고른다
+            # -> [1, 2], [1, 3], [1, 4] 
+            # 이 안에서의 pop으로 뒷자리 2, 3, 4를 넣고 빼고 함
             backtrack(i + 1, current_combination)
 
             ## 3. 취소(Unchoose)
-            # 다음 단계 진행을 위한 pop  
-            # 재귀에서 나와 i가 들어간 모든 경우의 수를 다 확인했으니 i + 2를 넣기 위해 i를 pop
+            # 방금 넣은 숫자를 다시 빼서 원래 상태로 되돌림
+            # 한 숫자를 선택한 경우를 다 탐색한 뒤엔 다음 숫자를 선택하는 경우도 봐야 함
+            # ex) [1]
+            # -> [1, 2], [1, 3], [1, 4]를 다 탐색했다면, [2]로 시작하는 경우를 탐색해야 함
+            # -> [1]를 pop 해서 []로 만듦 
+            # -> 60행 for문을 통해 i = 2가 됨 -> [2]로 시작하는 단계가 됨 
             current_combination.pop()
 
     # 1부터 차례대로 순회
