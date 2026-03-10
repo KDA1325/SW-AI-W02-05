@@ -23,43 +23,34 @@ digits[i]는 ['2', '9']범위 내의 숫자
 """
 class Solution:
     def letterCombinations(self, digits: str) -> List[str]:
-        # 출력값 리스트에 요소가 다 차면 종료
-        # 한 조합: 숫자 개수가 문자 개수 -> 이걸 여러 개 담은 리스트를 반환
+        dict_letters = {'2': 'abc', '3': 'def', '4': 'ghi', 
+        '5': 'jkl', '6': 'mno', '7': 'pqrs', '8': 'tuv', '9': 'wxyz'}
 
-        # 각 숫자가 어떤 문자를 가지고 있는지 어케 알지 내가 넘겨줘야 하나??
+        result = []
 
-        # 숫자 개수만큼 문자가 들어가는 조합
-        output = ""
+        # index: digits 문자열 중 현재 단계에서 보고 있는 index 번호 
+        # current_letters: 현재 단계까지 조합된 문자열 
+        def backtrack(index, current_letters):
+            if index == len(digits):
+                # [["a", "d"], ["a", "e"], ...] 로 저장됨 
+                # result.append(list(current_letters))
+                
+                # current_letters 리스트에 담긴 개별 문자들을 "문자열" 형식으로 합쳐서 result에 append()
+                result.append("".join(current_letters))
+                return
 
-        # 조합들이 들어가는 리스트 
-        result = []   
-
-        # 백트래킹용 함수 하나 더 필요 
-        def backtrack(start, current_combination):  
-            nums = [["a", "b", "c"], ["d", "e", "f"], ["g", "h", "i"],
-            ["j", "k", "l"], ["m", "n", "o"], ["p", "q", "r", "s"],
-            ["t", "u", "v"], ["w", "x", "y", "z"]]
-            # base case, 종료
-            # 한 조합의 길이가 숫자 개수만큼 되면 -> 조합 하나가 완료된 것이라고 판단하고 종료하기 
-            if len(current_combination) == len(digits):
-                # result 리스트에 조합 넣어주기
-                return result.append(list(current_combination))
-            
-            # start부터 len(digits)까지 숫자를 하나씩 시도
-            for i in range(start, len(digits)):
+            # digits[index]에 위치한 숫자(문자)에 대응하는 알파벳(문자열)에 접근  
+            # digits[index]에 대응되는 문자열의 문자 하나씩 시도
+            for j in range(len(dict_letters[digits[index]])):
                 # 1. 선택
-                # 현재 위치의 숫자 추가
-                current_combination.append(nums[digits[i]][i])
+                current_letters.append(dict_letters[digits[index]][j])
+            
+                # 2. 재귀
+                backtrack(index + 1, current_letters)
 
-                # 2. 탐색, 재귀
-                # 중복되지 않게 i + 1로 다음 단계 이동
-                # 만약 현재 i가 2라면, 다음 재귀에선 3이 되면서 겹치지 않는 다른 조합을 탐색할 수 있음
-                backtrack(i + 1, current_combination)
+                # 3. 취소: digits[index]에 대응되는 다음 조합을 만들기 위해 들어있는 문자를 뺌
+                current_letters.pop()
+        
+        backtrack(0, [])
 
-                # 3. 취소
-                # 다음 단계 진행을 위한 pop
-                # 재귀에서 나와 i가 들어간 모든 경우의 수를 다 확인했으니 다음 단계 i를 넣기 위해 i를 pop
-                current_combination.pop() 
-
-        backtrack(1, [])
         return result
