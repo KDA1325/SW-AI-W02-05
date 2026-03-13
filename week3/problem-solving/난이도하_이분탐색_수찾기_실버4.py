@@ -41,7 +41,5 @@ if __name__ == '__main__':
 
     result = binary_search(arr, arr_target)
 
-    # print(result)
-
     for i in range(len(result)):
         print(result[i])
