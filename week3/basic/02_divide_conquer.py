@@ -45,6 +45,22 @@ def find_max_divide_conquer(arr, left, right):
         mid = (left + right) // 2
         
         # TODO: 왼쪽 절반의 최댓값
+        left_max = find_max_divide_conquer(arr, left, mid)
+
+        # TODO: 오른쪽 절반의 최댓값
+        right_max = find_max_divide_conquer(arr, mid + 1, right)
+
+        # TODO: 둘 중 큰 값 반환
+        result = max(left_max, right_max)
+        
+        return result
+    
+    """ recur X
+    else:
+        # TODO: 중간 지점 계산
+        mid = (left + right) // 2
+    
+        # TODO: 왼쪽 절반의 최댓값
         left_arr = [arr[i] for i in range(left, mid + 1)]
         left_max = max(left_arr)
 
@@ -55,6 +71,7 @@ def find_max_divide_conquer(arr, left, right):
         # TODO: 둘 중 큰 값 반환
         result = max(left_max, right_max)
         return result
+    """
 
 
 # 테스트 케이스
