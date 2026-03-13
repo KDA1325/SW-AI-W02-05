@@ -35,20 +35,27 @@ def find_max_divide_conquer(arr, left, right):
     Returns:
         최댓값
     """
+
     # TODO: base case - 원소가 하나면 그 값 반환
-    pass
-    
-    # TODO: 중간 지점 계산
-    pass
-    
-    # TODO: 왼쪽 절반의 최댓값
-    pass
+    if left == right:
+        return arr[left]
+
+    else:
+        # TODO: 중간 지점 계산
+        mid = (left + right) // 2
         
-    # TODO: 오른쪽 절반의 최댓값
-    pass
-    
-    # TODO: 둘 중 큰 값 반환
-    pass
+        # TODO: 왼쪽 절반의 최댓값
+        left_arr = [arr[i] for i in range(left, mid + 1)]
+        left_max = max(left_arr)
+
+        # TODO: 오른쪽 절반의 최댓값
+        right_arr = [arr[i] for i in range(mid + 1, right + 1)]
+        right_max = max(right_arr)
+
+        # TODO: 둘 중 큰 값 반환
+        result = max(left_max, right_max)
+        return result
+
 
 # 테스트 케이스
 if __name__ == "__main__":
