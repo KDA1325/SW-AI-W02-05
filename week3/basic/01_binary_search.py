@@ -1,5 +1,4 @@
-"""
-[이분 탐색 - Binary Search]
+"""[[이분 탐색 - Binary Search]
 
 문제 설명:
 - 정렬된 배열에서 특정 값을 찾는 이분 탐색 알고리즘을 구현합니다.
@@ -35,17 +34,27 @@ def binary_search(arr, target):
     """
     left = 0
     right = len(arr) - 1
-    
+
     # TODO: left가 right보다 작거나 같을 때까지 반복
     ## 중간 인덱스 계산
     ## arr[mid]와 target 비교
     ## 같으면 mid 반환
     ## target이 더 크면 left = mid + 1
     ## target이 더 작으면 right = mid - 1
-    pass
-    
-    return -1
+    while left <= right:
+        mid = (left + right) // 2
+        # i = 0
 
+        if arr[mid] == target:
+            return mid
+        elif arr[mid] < target:
+            left = mid + 1
+        elif arr[mid] > target:
+            right = mid - 1
+
+    if left >= right:
+        return -1
+    
 # 테스트 케이스
 if __name__ == "__main__":
     # 테스트 케이스 1
@@ -65,7 +74,7 @@ if __name__ == "__main__":
     print(f"찾는 값: {target2}")
     print(f"결과: 인덱스 {result2}")
     print()
-    
+
     # 테스트 케이스 3: 없는 값
     arr3 = [1, 3, 5, 7, 9]
     target3 = 6
