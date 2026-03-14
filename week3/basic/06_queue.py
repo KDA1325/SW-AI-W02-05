@@ -41,11 +41,22 @@ def process_print_queue(jobs):
     
     processed = []
     
+    i = 0
+    
     # TODO: 큐가 비어있지 않은 동안 반복
     ## 큐에서 작업 꺼내기
     ## 작업 처리 (출력 및 리스트에 추가)
-    pass
-    
+    while len(jobs) > 0:
+        # AttributeError: 'str' object has no attribute 'pop'
+        # jobs[i].pop(0) -> jobs[i] 요소가 ["문서"]가 아니라 "문서"라서 str에서 pop 사용 불가 오류가 뜸
+        
+        # pop(0)은 인덱스 관계 없이 리스트의 맨 앞 요소를 제거
+        deque_item = jobs.pop(0)
+        
+        print(f"처리: {deque_item}")
+        processed.append(deque_item)
+        i += i
+
     return processed
 
 # 테스트 케이스
