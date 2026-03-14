@@ -17,7 +17,7 @@
 출력: [1, 5, 7, 8, 9, 10]
 
 힌트:
-- 피벗 선택 (일반적으로 마지막 원소)
+- 피벗 선택 (일반적으로 마지막 원소) => left | right | pivot
 - 피벗보다 작은 원소는 왼쪽, 큰 원소는 오른쪽으로 분할
 - 재귀적으로 왼쪽과 오른쪽 부분 정렬
 """
@@ -35,20 +35,25 @@ def partition(arr, low, high):
         피벗의 최종 위치 인덱스
     """
     # TODO: 피벗을 선택 (일반적으로 마지막 원소)
-    pass
+    pivot = arr[high]
     
-    # TODO: i는 작은 원소들의 마지막 인덱스를 추적
-    pass
+    # TODO: i는 작은 원소들의 마지막 인덱스를 추적(변수!)
+    i = low - 1
     
     # TODO: low부터 high-1까지 순회하면서
     ## 현재 원소가 피벗보다 작거나 같으면:
     ##   1. i를 1 증가
     ##   2. arr[i]와 arr[j]를 교환
-    pass
+    ### 순회 끝나면 pivot 보다 작은 값 | 정리 안 된 값(i) | pivot 이 됨
+    for j in range(low, high):
+        if arr[j] <= pivot:
+            i += 1
+            arr[i], arr[j] = arr[j], arr[i]
     
     # TODO: 피벗을 올바른 위치(i+1)에 배치
-    pass
-    
+    # arr[high]에 있는 pivot을 pivot보다 작은 값 중 마지막인 arr[i]의 다음인 arr[i + 1] 값으로 교환해야 함
+    arr[i + 1], arr[high] = arr[high], arr[i + 1]        
+
     return i + 1
 
 def quick_sort_helper(arr, low, high):
@@ -64,9 +69,13 @@ def quick_sort_helper(arr, low, high):
     ## 분할하여 피벗 인덱스 얻기
     ## 피벗 왼쪽 부분 재귀 정렬
     ## 피벗 오른쪽 부분 재귀 정렬
-    pass 
+    if low < high:
+        base = partition(arr, low, high)
+        # 왼쪽 정렬, low ~ 분할된 base 리스트 끝
+        quick_sort_helper(arr, low, base - 1)
+        # 오른쪽 정렬, 분할된 base 리스트 다음 ~ high
+        quick_sort_helper(arr, base + 1, high)
     
-
 def quick_sort(arr):
     """
     퀵 정렬 메인 함수
