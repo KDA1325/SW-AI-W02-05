@@ -82,3 +82,23 @@ if __name__ == "__main__":
     print(f"배열: {arr3}")
     print(f"찾는 값: {target3}")
     print(f"결과: 인덱스 {result3}")
+
+"""
+재귀로 풀 때
+def bin_search(arr, start, end, target):
+if start >= end:
+    if target: 
+        mid 구함
+        if mid == target
+
+        if target > arr[mid]
+            mid를 start로 사용
+            bin_search(arr, mid, end, target)
+        if target < arr[mid]
+            mid를 end로 사용
+            bin_search(arr, start, mid, target)
+    return
+
+basecase를 어떻게 할지(바로 탈출하는 경우)
+재귀를 돌 때 원래 함수의 파라미터에 뭘 넣을지ㅣㅣ
+"""
