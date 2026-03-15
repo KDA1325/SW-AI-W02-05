@@ -18,7 +18,6 @@ def push(stk, x):
     stk.append(x)
 
 def pop(stk):
-    print("pop")
     if len(stk) == 0:
         print(-1)
     
@@ -40,32 +39,38 @@ def top(stk):
     if len(stk) == 0:
         print(-1)
     else:
-        print(stk[len(stk) - 1])
+        print(stk[-1])
 
 if __name__ == '__main__':  
-    n = input()
-    n = int(n)
-
-    inputs = []
+    n = int(input())
+    
+    cmd = []
     stk = []
+    i = 0
 
-    # for cmd in cmd_arr 처럼 리스트 요소 자체를 돌게해보기 
     for i in range(n):
-        cmd = list(map(str, input().split()))
-        inputs.append(cmd)
-    # print(inputs)
-    # [['pop'], ['top'], ['push', '123'], ['pop'], ['top'], ['pop'], ['top']]
-    for j in range(len(inputs)):
-        # print("output")
-        if inputs[j][0] == "push":
-            # push 문자열과 x 값은 이중으로 들어감
-            x = int(inputs[j][1])
+        cmd.append(input().split())
+    
+    # print(cmd)
+
+    for i in range(len(cmd)):
+        print('cmd 확인해염')
+
+        if cmd[i][0] == "push":
+            # print('push 해염')
+            x = int(cmd[i][1])
+            # print(x)
             push(stk, x)
-        elif inputs[j] == "pop":
+            # print(stk)
+
+        elif cmd[i][0] == "pop":
             pop(stk)
-        elif inputs[j] == "size":
+
+        elif cmd[i][0] == "size":
             size(stk)
-        elif inputs[j] == "empty":
+
+        elif cmd[i][0] == "empty":
             empty(stk)
-        elif inputs[j] == "top":
+            
+        elif cmd[i][0] == "top":
             top(stk)
