@@ -32,13 +32,15 @@ def LinkedList(strings):
 
         m -= 1
 
+    # 단순 문자열 형태로 출력하기 위해 join 사용
+    ## right_s에 pop, append 작업을 반대로 했기 때문에 출력할 때 반대로 돌려서 출력해줘야 함
     result = ''.join(left_s + right_s[::-1])
 
     return result
 
 if __name__ == '__main__':
     import sys
-    
+    # sys.stdin.readline()은 개행 문자 \n까지 입력 받음 -> .strip('\n')으로 개행 문자 없이 입력 받기 가능
     strings = str(sys.stdin.readline().strip('\n'))
     result = LinkedList(strings)
     print(result)
