@@ -3,7 +3,6 @@
 
 def find_word(words):
     for word in words:
-        if len(word) 
         if word[::-1] in words:
             return word
 
