@@ -47,13 +47,27 @@ def bfs(graph, start):
     
     # TODO: 큐 생성 및 시작 정점 추가
     ## 방문한 정점 집합
-    pass
+
+    # 큐 만들어서 순회할 그래프 넣어주기
+    queue = deque(graph)
+
+    # 방문한 기록에 start 지점 넣어주기
+    visited.append(start)
 
     # TODO: 큐가 빌 때까지 반복
     ## 큐에서 정점 꺼내기
     ## 인접한 정점들 확인
     ## 방문하지 않은 정점이면 큐에 추가
-    pass
+    while queue:
+        # 앞에서부터 pop
+        deque_item = queue.popleft()
+
+        # 그래프에서 방금 pop한 요소의 인접한 정점 순회
+        for neighbor in graph[deque_item]:
+            # 인접한 정점의 방문 기록이 없다면
+            if neighbor not in visited:
+                # 방문 기록에 정점 추가
+                visited.append(neighbor)
     
     return visited
 
@@ -71,4 +85,3 @@ if __name__ == "__main__":
     result = bfs(graph, 0)
     print(f"시작 정점: 0")
     print(f"방문 순서: {result}")
-
