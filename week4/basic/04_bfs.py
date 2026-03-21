@@ -49,7 +49,9 @@ def bfs(graph, start):
     ## 방문한 정점 집합
 
     # 큐 만들어서 순회할 그래프 넣어주기
-    queue = deque(graph)
+    ## graph[start]는 start의 인접 정점을 넣는 것
+    ### 시작 정점 자체인 [start]를 큐에 넣어야 한다
+    queue = deque([start])
 
     # 방문한 기록에 start 지점 넣어주기
     visited.append(start)
@@ -66,6 +68,7 @@ def bfs(graph, start):
         for neighbor in graph[deque_item]:
             # 인접한 정점의 방문 기록이 없다면
             if neighbor not in visited:
+                queue.append(neighbor)
                 # 방문 기록에 정점 추가
                 visited.append(neighbor)
     
