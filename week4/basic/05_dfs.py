@@ -51,8 +51,12 @@ def dfs(graph, start, visited=None):
     
     # TODO: 인접한 정점들에 대해 재귀
     ## 방문하지 않은 정점이면 재귀 호출
+
+    # 현재 정점과 인접한 정점들 순회
     for neighbor in graph[start]:
+        # 인접한 정점이 방문하지 않은 정점이면
         if neighbor not in visited:
+            # 재귀를 돌면서 인접한 정점을 visited에 넣고, 인접한 정점의 인접한 정점을 순회하며 재귀 반복
             dfs(graph, neighbor, visited)
     
     return visited
