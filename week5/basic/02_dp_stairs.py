@@ -57,15 +57,16 @@ def climb_stairs(n):
     dp = [0] * (n + 1)
 
     # TODO: 특별한 경우 처리
-    # n이 1일 땐 dp[1]까지 밖에 안 생기기 때문에 dp[2]에 접근하면 오류 발생
-    if n >= 1:
-        # n이 1 이상일 때, 무조건 dp[1] = 1
-        dp[1] = 1
+    # 무조건 dp[0] = 0
+    dp[0] = 0
+    
+    # 무조건 dp[1] = 1
+    dp[1] = 1
 
-        # n이 그냥 1일 땐 dp[2]에 접근할 수 없기 때문에 따로 처리
-        if n >= 2:
-            # n이 2 이상일 때, 무조건 dp[2] = 2
-            dp[2] = 2
+    # 무조건 dp[2] = 2
+    ## if문이 없으면 n이 1일 때 dp[2]에 접근하여 IndexError: list assignment index out of range 발생
+    if n >= 2:
+        dp[2] = 2
     
     # TODO: 작은 문제부터 차례로 계산
     for i in range(3, n + 1):
