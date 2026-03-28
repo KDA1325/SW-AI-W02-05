@@ -43,28 +43,35 @@ def make_change_greedy(change, coins):
     result = {}
     total_coins = 0
     
+    # 동전을 내림차순 정렬 시켜 큰 순서대로 동전 개수 계산 
     coins.sort(reverse = True)
     
     # TODO: 각 동전에 대해 반복
     ## 현재 동전으로 거슬러줄 수 있는 개수 계산    
     ## 개수가 0보다 크면 결과에 추가
     for coin in coins:
+        # 우선 큰 동전을 몇 개나 소비할 수 있는지 계산
         count = change // coin
 
+        # 큰 동전을 1개 이상 사용할 수 있다면
         if count > 0:
+            # result 배열에 {동전: 개수} 저장
             result[coin] = count
 
+            # 총 개수를 동전 개수만큼 증가 
             total_coins += count
-            
+
+            # count 계산의 나머지 -> 다음으로 큰 동전을 소비할 금액
             tmp = change % coin
 
+            # 나머지가 0이 아니라면
             if tmp != 0:
+                # 저장한 금액을 change로 저장해 for문을 돌며 계속 계산하도록 함
                 change = tmp
             else:
+                # 나머지가 0이 아니라면 거슬러 줄 금액을 다 거슬러 준 것이기 때문에 for문 종료 
                 break
 
-        
-    
     return total_coins, result
 
 # 테스트 케이스
